@@ -8,7 +8,10 @@ export default function Navbar() {
                <Link to="/">Accueil</Link>
             </li>
             <li>
-               <Link to="/about">À propos</Link>
+               <Link to="/tic-tac-toe">Tic Tac Toe</Link>
+            </li>
+            <li>
+               <Link to="/style">Styled Component</Link>
             </li>
          </ul>
       </nav>
