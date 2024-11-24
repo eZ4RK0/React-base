@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const TitleStyle = styled.div({
    color: (props) => (props.red ? 'red' : props.blue ? 'blue' : 'black'),
-   textDecoration: 'underline',
+   textDecoration: 'underline'
 });
 
 export default function StyledComponent() {

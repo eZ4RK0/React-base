@@ -12,7 +12,7 @@ function Square({ value, onSquareClick, className }) {
 Square.propTypes = {
    value: PropTypes.string,
    onSquareClick: PropTypes.func.isRequired,
-   className: PropTypes.string,
+   className: PropTypes.string
 };
 
 function Board({ xIsNext, squares, onPlay }) {
@@ -75,7 +75,7 @@ function Board({ xIsNext, squares, onPlay }) {
 Board.propTypes = {
    xIsNext: PropTypes.bool.isRequired,
    squares: PropTypes.array.isRequired,
-   onPlay: PropTypes.func.isRequired,
+   onPlay: PropTypes.func.isRequired
 };
 
 function calculateWinner(squares) {
@@ -87,20 +87,16 @@ function calculateWinner(squares) {
       [1, 4, 7],
       [2, 5, 8],
       [0, 4, 8],
-      [2, 4, 6],
+      [2, 4, 6]
    ];
 
    for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
-      if (
-         squares[a] &&
-         squares[a] === squares[b] &&
-         squares[a] === squares[c]
-      ) {
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
          return {
             status: 'winner',
             player: squares[a],
-            line: [a, b, c],
+            line: [a, b, c]
          };
       }
    }
@@ -110,14 +106,12 @@ function calculateWinner(squares) {
    }
 
    return {
-      status: 'gameInProgress',
+      status: 'gameInProgress'
    };
 }
 
 export default function Game() {
-   const [history, setHistory] = useState([
-      { board: Array(9).fill(null), move: [null, null] },
-   ]);
+   const [history, setHistory] = useState([{ board: Array(9).fill(null), move: [null, null] }]);
    const [currentMove, setCurrentMove] = useState(0);
    const [historyAscSorted, setHistoryAscSorted] = useState(false);
    const xIsNext = currentMove % 2 === 0;
@@ -126,7 +120,7 @@ export default function Game() {
    function handlePlay(nextSquares, line, col) {
       const nextHistory = [
          ...history.slice(0, currentMove + 1),
-         { board: nextSquares, move: [line, col] },
+         { board: nextSquares, move: [line, col] }
       ];
       setHistory(nextHistory);
       setCurrentMove(nextHistory.length - 1);
@@ -142,9 +136,7 @@ export default function Game() {
    const moves = sortedHistory.map((squares, move) => {
       move = !historyAscSorted ? move : history.length - 1 - move;
       let description =
-         move > 0
-            ? `#${move + 1} : (${squares.move[0]};${squares.move[1]})`
-            : 'Revenir au début';
+         move > 0 ? `#${move + 1} : (${squares.move[0]};${squares.move[1]})` : 'Revenir au début';
 
       return currentMove === move ? (
          <li key={move}>Vous êtes au coup #{move + 1}</li>
@@ -160,17 +152,12 @@ export default function Game() {
          <h1>Tic Tac Toe</h1>
          <div className="game">
             <div className="game-board">
-               <Board
-                  xIsNext={xIsNext}
-                  squares={currentSquares}
-                  onPlay={handlePlay}
-               />
+               <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
             </div>
             <div className="game-info">
                <ol>{moves}</ol>
                <button onClick={() => setHistoryAscSorted(!historyAscSorted)}>
-                  Trier par ordre{' '}
-                  {historyAscSorted ? 'décroissant' : 'croissant'}
+                  Trier par ordre {historyAscSorted ? 'décroissant' : 'croissant'}
                </button>
             </div>
          </div>
