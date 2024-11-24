@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './Board.scss';
+import './Board.css';
 
 function Square({ value, onSquareClick, className }) {
    return (
